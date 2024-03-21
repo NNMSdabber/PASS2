@@ -237,9 +237,11 @@ namespace PASS2
 
             spriteBatch.Begin();
 
+            //Draws the morbius
             for (int i = 0; i < mobs.Count; i++)
             {
                 mobs[i].DrawMob(spriteBatch);
+
             }
             
 
