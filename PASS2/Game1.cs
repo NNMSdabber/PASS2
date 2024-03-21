@@ -36,7 +36,7 @@ namespace PASS2
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        //use FileIO to store stats long term
+        //use FileIO to store stats
         static StreamReader inFile;
         static StreamWriter outFile;
 
@@ -100,6 +100,12 @@ namespace PASS2
 
         //Store the mobs within a list
         List<Mob> mobs = new List<Mob>();
+
+        //Stores the levels within an array
+        Level[] level = new Level[MAX_LEVELS];
+
+        //Stores the current level
+        int curLevel = 0;
 
         public Game1()
         {
@@ -198,6 +204,15 @@ namespace PASS2
             //mobs.Add(new Villager(new Rectangle(0 - villagerImg.Width, rng.Next(0, screenHeight - (villagerImg.Height * 2)), villagerImg.Width, villagerImg.Height), villagerImg, 10, 1, 10));
             mobs.Add(new Villager(new Rectangle(200, 200, villagerImg.Width, villagerImg.Height), villagerImg, 10, 1, 10));
             gameState = MENU_STATE;
+
+
+            level[0] = new Level(dirtImg, grassImg, stoneImg, "Level1.txt",new Texture2D[10,10],new Rectangle[10,10]);
+           // level[1] = new Level(dirtImg, grassImg, stoneImg, "Level2.txt",new Texture2D[10, 10], new Rectangle[10, 10]);
+           // level[2] = new Level(dirtImg, grassImg, stoneImg, "Level3.txt", new Texture2D[10, 10], new Rectangle[10, 10]);
+           // level[3] = new Level(dirtImg, grassImg, stoneImg, "Level4.txt", new Texture2D[10, 10], new Rectangle[10, 10]);
+           // level[4] = new Level(dirtImg, grassImg, stoneImg, "Level5.txt", new Texture2D[10, 10], new Rectangle[10, 10]);
+
+
         }
 
         /// <summary>
@@ -243,8 +258,12 @@ namespace PASS2
                 mobs[i].DrawMob(spriteBatch);
 
             }
-            
 
+            //for (int i = 0; i < level.Length; i++)
+            //{
+              //  level[i].DrawLevel(spriteBatch);
+            //}
+            level[0].DrawLevel(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
